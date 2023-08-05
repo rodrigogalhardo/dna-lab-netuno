@@ -3,11 +3,11 @@ name: CI/CD para Flask Python3
 on:
   push:
     branches:
-      - main
+      - production
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  DOCKER_HUB_URI: ${{ seu_dockerhub_uri }}
+  DOCKER_HUB_URI: ${{ secrets.DOCKER_HUB_URI }}
   IMAGE_NAME: ${{ netuno-receiver-microservice }}
   TAG: ${{ github.sha }}
 
