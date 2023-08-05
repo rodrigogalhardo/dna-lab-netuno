@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amqp-netuno-deployment
+  namespace: planets
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: amqp-netuno-deployment
+  template:
+    metadata:
+      labels:
+        app: amqp-netuno-deployment
+    spec:
+      containers:
+        - name: amqp-netuno-container
+          image: amqp-netuno:latest # Use a tag from the built sender Docker image
+          ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: amqp-netuno-deployment-service
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: amqp-urano
+---
